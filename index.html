@@ -4,10 +4,9 @@
   <meta charset="UTF-8" />
   <!-- Ключевой тег для iOS -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <!-- Запрет масштабирования при двойном тапе (опционально, но улучшает UX) -->
   <meta name="format-detection" content="telephone=no">
   <title>Экраны и зрение | Проект МАОУ СОШ №26</title>
-  <!-- ИСПРАВЛЕНО: убран лишний пробел в конце URL -->
+  <!-- Font Awesome — исправленная ссылка (без пробела!) -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
     * { 
@@ -20,58 +19,16 @@
       line-height: 1.6;
       color: #333;
       background: #f9fbfd;
-      /* Убираем горизонтальный скролл на iOS */
       overflow-x: hidden;
     }
+
+    /* === ШАПКА === */
     header {
       background: linear-gradient(135deg, #1976d2, #2e7d32);
       color: white;
       text-align: center;
-      padding: 2rem 1rem;
+      padding: 1.8rem 1rem;
     }
-    nav {
-      background: #0d47a1;
-      padding: 0.8rem 0.5rem;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      /* Улучшаем прокрутку на iOS */
-      -webkit-overflow-scrolling: touch;
-    }
-    nav a {
-      color: white;
-      text-decoration: none;
-      margin: 0 8px;
-      font-weight: bold;
-      padding: 0.6rem 1rem; /* Увеличено для удобства касания */
-      border-radius: 6px;
-      transition: background 0.3s;
-      display: inline-block;
-      min-width: 60px; /* Минимальный размер для пальца */
-      text-align: center;
-    }
-    nav a:hover,
-    nav a:focus {
-      background: rgba(255,255,255,0.25);
-      outline: none;
-    }
-    main {
-      max-width: 850px;
-      margin: 1.5rem auto;
-      padding: 0 1.2rem;
-    }
-    section {
-      background: white;
-      padding: 1.8rem;
-      margin-bottom: 2rem;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.07);
-    }
-    h1, h2 {
-      margin-bottom: 1.1rem;
-      color: #1976d2;
-    }
-    /* Белый заголовок в шапке */
     header h1 {
       color: white;
       font-size: 1.9rem;
@@ -80,20 +37,88 @@
     }
     header p {
       color: rgba(255,255,255,0.95);
-      margin-top: 0.5rem;
+      margin: 0.5rem 0 0;
       font-size: 0.95rem;
       line-height: 1.5;
     }
-    h2 { 
-      font-size: 1.5rem; 
+
+    /* === МОБИЛЬНОЕ МЕНЮ (burger) === */
+    .mobile-nav {
+      background: #0d47a1;
+      padding: 0.6rem 1rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
     }
-    p { 
-      margin-bottom: 1rem; 
+    .nav-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .nav-header h2 {
+      color: white;
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin: 0;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    #menu-toggle {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1.4rem;
+      cursor: pointer;
+      padding: 0.2rem;
+    }
+    .mobile-menu {
+      margin-top: 0.6rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+    .mobile-menu a {
+      color: white;
+      text-decoration: none;
+      padding: 0.5rem 0.8rem;
+      border-radius: 6px;
+      font-weight: 500;
+      font-size: 0.95rem;
+      transition: background 0.3s;
+    }
+    .mobile-menu a:hover {
+      background: rgba(255,255,255,0.2);
+    }
+    .hidden {
+      display: none;
+    }
+
+    /* === ОСНОВНОЙ КОНТЕНТ === */
+    main {
+      max-width: 850px;
+      margin: 1.2rem auto;
+      padding: 0 1.2rem;
+    }
+    section {
+      background: white;
+      padding: 1.6rem;
+      margin-bottom: 1.8rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.07);
+    }
+    h2 {
+      margin-bottom: 1.1rem;
+      color: #1976d2;
+      font-size: 1.5rem;
+    }
+    p {
+      margin-bottom: 1rem;
       font-size: 1.05rem;
     }
-    ul, ol { 
-      margin-left: 1.6rem; 
-      margin: 1rem 0 1.4rem; 
+    ul, ol {
+      margin-left: 1.6rem;
+      margin: 1rem 0 1.4rem;
       font-size: 1.05rem;
     }
     .highlight {
@@ -103,7 +128,8 @@
       margin: 1.4rem 0;
       border-radius: 0 8px 8px 0;
     }
-    /* Карточки с советами */
+
+    /* Карточки */
     .cards {
       display: grid;
       gap: 1.1rem;
@@ -128,7 +154,8 @@
       color: #0d47a1;
       font-size: 1.15rem;
     }
-    /* Изображения диаграмм */
+
+    /* Диаграммы */
     .chart-img {
       width: 100%;
       max-width: 600px;
@@ -137,56 +164,26 @@
       box-shadow: 0 2px 8px rgba(0,0,0,0.1);
       display: block;
     }
+
     footer {
       text-align: center;
-      padding: 2rem 1rem 1.5rem;
+      padding: 1.8rem 1rem 1.2rem;
       color: #555;
       font-size: 0.9rem;
       border-top: 1px solid #eee;
     }
-    .qr-box img {
-      width: 140px;
-      height: auto;
-      border: 1px solid #ddd;
-      border-radius: 8px;
-    }
 
-    /* === Адаптация под iPhone и маленькие экраны === */
+    /* === АДАПТИВНОСТЬ === */
+    @media (min-width: 601px) {
+      .mobile-nav { display: none; }
+      nav { display: block; }
+    }
     @media (max-width: 600px) {
       header h1 { font-size: 1.7rem; }
       h2 { font-size: 1.4rem; }
-      p, ul, ol { font-size: 1rem; }
-      
-      nav {
-        padding: 0.7rem 0;
-      }
-      nav a {
-        display: block;
-        margin: 6px 10px;
-        padding: 0.7rem;
-        font-size: 1.05rem;
-      }
-      
-      .card {
-        flex-direction: column;
-      }
-      .card i {
-        margin-bottom: 0.8rem;
-        font-size: 1.8rem;
-      }
-      
-      section {
-        padding: 1.5rem;
-      }
-      
-      main {
-        margin: 1.2rem auto;
-      }
-    }
-
-    /* Дополнительно: предотвращаем увеличение текста при повороте на iOS */
-    @media screen and (orientation: landscape) and (max-height: 500px) {
-      p, li, .card-content p { font-size: 0.95rem; }
+      section { padding: 1.4rem; }
+      .card { flex-direction: column; }
+      .card i { margin-bottom: 0.8rem; font-size: 1.7rem; }
     }
   </style>
 </head>
@@ -199,12 +196,21 @@
     <p>Информационный сайт по результатам исследовательского проекта<br>ученика МАОУ СОШ №26, г. Тюмень</p>
   </header>
 
-  <nav>
-    <a href="#home">Главная</a>
-    <a href="#impact">Как гаджеты вредят?</a>
-    <a href="#survey">Результаты опроса</a>
-    <a href="#tips">Советы</a>
-    <a href="#about">О проекте</a>
+  <!-- МОБИЛЬНОЕ МЕНЮ -->
+  <nav class="mobile-nav">
+    <div class="nav-header">
+      <h2>Экраны и зрение</h2>
+      <button id="menu-toggle" aria-label="Открыть меню">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+    <div id="mobile-menu" class="mobile-menu hidden">
+      <a href="#home">Главная</a>
+      <a href="#impact">Как гаджеты вредят?</a>
+      <a href="#survey">Результаты опроса</a>
+      <a href="#tips">Советы</a>
+      <a href="#about">О проекте</a>
+    </div>
   </nav>
 
   <main>
@@ -296,6 +302,21 @@
       <p>Цель исследования — определить степень влияния экранов электронных устройств на зрение подростков и разработать рекомендации по безопасному использованию гаджетов.</p>
     </section>
   </main>
+
+  <!-- JS для меню -->
+  <script>
+    document.getElementById('menu-toggle').addEventListener('click', function() {
+      const menu = document.getElementById('mobile-menu');
+      menu.classList.toggle('hidden');
+    });
+
+    // Закрытие меню при клике по ссылке
+    document.querySelectorAll('.mobile-menu a').forEach(link => {
+      link.addEventListener('click', () => {
+        document.getElementById('mobile-menu').classList.add('hidden');
+      });
+    });
+  </script>
 
 </body>
 </html>
